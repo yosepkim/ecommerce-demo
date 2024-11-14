@@ -77,7 +77,7 @@ const ProductDetail
       body: JSON.stringify(order)
     });
     setProduct(initialOrder);
-    navigate('/products');
+    navigate('/order-confirmation');
   }
 
   if (loading) {
