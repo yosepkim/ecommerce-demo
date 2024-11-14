@@ -15,6 +15,7 @@ public class OrderService {
 
     @Autowired
     private ProductInventoryRepository productInventoryRepository;
+
     public String placeOrder(Order order) {
         order.setStatus("PAID");
         orderRepository.save(order);
@@ -24,7 +25,7 @@ public class OrderService {
 
     private String updateInventoryCount(Order order) {
         order.getLineItems().forEach(lineItem -> {
-            ProductInventory inventory = lineItem.getProductVariation().getInventory();
+            ProductInventory inventory = productInventoryRepository.findById(lineItem.getProductVariation().getInventory().getId()).get();
             Long currentQuantity = inventory.getOnHandCount();
             Long newQuantity = currentQuantity - lineItem.getQuantity();
             inventory.setOnHandCount(newQuantity);

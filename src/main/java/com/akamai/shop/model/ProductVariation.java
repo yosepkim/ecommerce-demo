@@ -22,14 +22,14 @@ public class ProductVariation {
     private String description;
     private Double price;
 
-    @JsonBackReference
+    @JsonBackReference(value = "product")
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
     @OneToOne(mappedBy = "productVariation")
     private ProductInventory inventory;
 
+    @JsonBackReference(value = "lineItems")
     @OneToMany(mappedBy = "productVariation")
     private List<LineItem> lineItems;
 }

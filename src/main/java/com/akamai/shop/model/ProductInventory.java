@@ -19,7 +19,7 @@ public class ProductInventory {
     private Long onHandCount;
 
     @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "product_variation_id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "product_variation_id")
     private ProductVariation productVariation;
 }

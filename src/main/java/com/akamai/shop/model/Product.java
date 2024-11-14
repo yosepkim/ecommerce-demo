@@ -22,6 +22,7 @@ public class Product {
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
     private List<ProductVariation> variations;
 }

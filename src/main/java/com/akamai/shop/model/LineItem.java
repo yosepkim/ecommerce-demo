@@ -18,11 +18,10 @@ public class LineItem {
 
     private Long quantity;
 
-    @OneToOne
-    @JoinColumn(name = "order_id", nullable = false)
+    @ManyToOne
     private Order order;
 
     @OneToOne
-    @JoinColumn(name = "product_variation_id", nullable = false)
+    @JoinColumn(name = "productVariationId", nullable = false)
     private ProductVariation productVariation;
 }

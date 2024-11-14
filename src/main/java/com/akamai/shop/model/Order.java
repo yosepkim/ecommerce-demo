@@ -24,6 +24,7 @@ public class Order {
     private Double grandTotalAmount;
     private String status;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
     private List<LineItem> lineItems;
 }
