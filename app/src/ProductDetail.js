@@ -89,11 +89,20 @@ const ProductDetail
         <td style={{whiteSpace: 'nowrap'}}>{productVariation.name}</td>
         <td>{productVariation.description}</td>
         <td>${productVariation.price}</td>
-        <td><Input type="text"
-            name={productVariation.id}
-            id={productVariation.id}
-            value={order.lineItems.find(x => x.productVariation.id === productVariation.id).quantity || '0'}
-            onChange={handleChange} /></td>
+        <td>
+            {
+              productVariation.inventory.onHandCount > 0 &&
+                <Input type="text"
+                name={productVariation.id}
+                id={productVariation.id}
+                value={order.lineItems.find(x => x.productVariation.id === productVariation.id).quantity || '0'}
+                onChange={handleChange} />
+            }
+            {
+                productVariation.inventory.onHandCount <= 0 &&
+                <span>Out of stock</span>
+            }
+        </td>
       </tr>
     });
 
@@ -111,16 +120,22 @@ const ProductDetail
                 <hr/>
                 <table>
                     {productVariationList}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <hr/>
+                            <FormGroup>
+                                <h4>Sub total: {USDollar.format(order.totalAmount)}</h4>
+                                <h4>Tax: {USDollar.format(order.taxAmount)}</h4>
+                                <h4>Grand total: {USDollar.format(order.grandTotalAmount)}</h4>
+                                <Button color="primary" type="submit">Buy</Button>{' '}
+                                <Button color="secondary" tag={Link} to="/products">Cancel</Button>
+                            </FormGroup>
+                        </td>
+                    </tr>
                 </table>
             </div>
           </div>
-          <FormGroup>
-            <h4>Sub total: {USDollar.format(order.totalAmount)}</h4>
-            <h4>Tax: {USDollar.format(order.taxAmount)}</h4>
-            <h4>Grand total: {USDollar.format(order.grandTotalAmount)}</h4>
-            <Button color="primary" type="submit">Buy</Button>{' '}
-            <Button color="secondary" tag={Link} to="/products">Cancel</Button>
-          </FormGroup>
         </Form>
       </Container>
     </div>

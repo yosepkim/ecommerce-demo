@@ -24,7 +24,7 @@ public class Order {
     private Double grandTotalAmount;
     private String status;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "order_id")
     private List<LineItem> lineItems;
 }
