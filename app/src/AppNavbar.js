@@ -13,7 +13,7 @@ const AppNavbar = () => {
       <Collapse isOpen={isOpen} navbar>
         <Nav className="justify-content-end" style={{width: "100%"}} navbar>
           <NavItem>
-            <NavLink href="/">FamousTshirts</NavLink>
+            <NavLink href="/">FamousTShirts</NavLink>
           </NavItem>
         </Nav>
       </Collapse>

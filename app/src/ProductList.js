@@ -39,6 +39,7 @@ const ProductList = () => {
   return (
     <div>
       <AppNavbar/>
+      <div class="mb-5">&nbsp;</div>
       <Container fluid>
         <h3>Best Selling Products</h3>
         <Table className="mt-4">
