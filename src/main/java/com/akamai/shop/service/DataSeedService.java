@@ -74,7 +74,7 @@ public class DataSeedService {
                 .onHandCount(onHandCount)
                 .build();
         productInventoryRepository.save(productInventory);
-        seedHarper(productVariation, onHandCount);
+        //seedHarper(productVariation, onHandCount);
     }
 
     private void seedHarper(ProductVariation variation, Long count) {
