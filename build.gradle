@@ -37,3 +37,7 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+task buildReact(type: Exec) {
+	commandLine './buildReact.sh'
+}
+tasks.build.dependsOn(buildReact)
