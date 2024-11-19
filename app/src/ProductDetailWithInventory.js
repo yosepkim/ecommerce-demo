@@ -30,7 +30,7 @@ const ProductDetail
   });
 
   useEffect(() => {
-    fetch(`/products/${id}`)
+    fetch(`/api/products/${id}`)
     .then(response => response.json())
     .then(data => {
        setProduct(data);

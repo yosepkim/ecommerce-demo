@@ -13,7 +13,7 @@ import java.util.Objects;
 
 @RestController
 public class ProductImageController {
-    @GetMapping(path = "images/{name}/image.png", produces = MediaType.IMAGE_PNG_VALUE)
+    @GetMapping(path = "api/images/{name}/image.png", produces = MediaType.IMAGE_PNG_VALUE)
     public BufferedImage getProductImage(@PathVariable String name) throws IOException {
         final BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/static/t-shirt.jpg")));
 

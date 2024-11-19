@@ -68,7 +68,7 @@ const ProductDetail
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await fetch('/orders', {
+    await fetch('/api/orders', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
