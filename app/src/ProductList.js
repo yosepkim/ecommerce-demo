@@ -29,7 +29,7 @@ const ProductList = () => {
       <td>{product.description}</td>
       <td><img src={"/api/images/" + product.name + "/image.png"} /></td>
       <td>
-          <Link to={"/products/" + product.id}>View</Link>
+          <Button size="sm" color="primary" tag={Link} to={"/products/" + product.id}>View</Button>
       </td>
     </tr>
   });
