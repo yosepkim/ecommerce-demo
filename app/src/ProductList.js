@@ -27,7 +27,7 @@ const ProductList = () => {
     return <tr key={product.id}>
       <td style={{whiteSpace: 'nowrap'}}>{product.name}</td>
       <td>{product.description}</td>
-      <td><img src={"/images/" + product.name + "/image.png"} /></td>
+      <td><img src={"/api/images/" + product.name + "/image.png"} /></td>
       <td>
         <ButtonGroup>
           <Button size="sm" color="primary" tag={Link} to={"/products/" + product.id}>View</Button>

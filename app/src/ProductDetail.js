@@ -113,7 +113,7 @@ const ProductDetail
         <Form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col text-center">
-                <img src={"/images/" + product.name + "/image.png"} />
+                <img src={"/api/images/" + product.name + "/image.png"} />
                 <h2>{product.name}</h2>
             </div>
             <div className="col">
