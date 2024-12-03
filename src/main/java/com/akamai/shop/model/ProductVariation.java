@@ -21,13 +21,11 @@ public class ProductVariation {
     private String name;
     private String description;
     private Double price;
+    private Long onHandCount;
 
     @JsonBackReference(value = "product")
     @ManyToOne
     private Product product;
-
-    @OneToOne(mappedBy = "productVariation")
-    private ProductInventory inventory;
 
     @JsonBackReference(value = "lineItems")
     @OneToMany(mappedBy = "productVariation")

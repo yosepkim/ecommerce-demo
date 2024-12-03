@@ -1,10 +1,8 @@
 package com.akamai.shop.service;
 
 import com.akamai.shop.model.Product;
-import com.akamai.shop.model.ProductInventory;
 import com.akamai.shop.model.ProductVariation;
 import com.akamai.shop.model.Store;
-import com.akamai.shop.respository.ProductInventoryRepository;
 import com.akamai.shop.respository.ProductRepository;
 import com.akamai.shop.respository.ProductVariationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +17,6 @@ public class DataSeedService {
     private ProductRepository productRepository;
     @Autowired
     private ProductVariationRepository productVariationRepository;
-    @Autowired
-    private ProductInventoryRepository productInventoryRepository;
 
     @Autowired
     private HarperClient harperClient;
@@ -38,6 +34,7 @@ public class DataSeedService {
                     .name("S")
                     .description("Small")
                     .price(9.99)
+                    .onHandCount(generateProductInventories())
                     .product(product)
                     .build();
 
@@ -46,6 +43,7 @@ public class DataSeedService {
                     .name("M")
                     .description("Medium")
                     .price(19.99)
+                    .onHandCount(generateProductInventories())
                     .product(product)
                     .build();
 
@@ -54,27 +52,20 @@ public class DataSeedService {
                     .name("L")
                     .description("Large")
                     .price(29.99)
+                    .onHandCount(generateProductInventories())
                     .product(product)
                     .build();
 
 
             productVariationRepository.saveAll(List.of(productVariation1, productVariation2, productVariation3));
-            seedProductInventories(productVariation1);
-            seedProductInventories(productVariation2);
-            seedProductInventories(productVariation3);
         }
         return "completed";
     }
 
-    private void seedProductInventories(ProductVariation productVariation) {
+    private Long generateProductInventories() {
         Random rand = new Random();
         Long onHandCount = (long) rand.nextInt((10) + 1);
-        ProductInventory productInventory = ProductInventory.builder()
-                .productVariation(productVariation)
-                .onHandCount(onHandCount)
-                .build();
-        productInventoryRepository.save(productInventory);
-        //seedHarper(productVariation, onHandCount);
+        return onHandCount;
     }
 
     private void seedHarper(ProductVariation variation, Long count) {

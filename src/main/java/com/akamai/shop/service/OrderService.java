@@ -1,9 +1,9 @@
 package com.akamai.shop.service;
 
 import com.akamai.shop.model.Order;
-import com.akamai.shop.model.ProductInventory;
+import com.akamai.shop.model.ProductVariation;
 import com.akamai.shop.respository.OrderRepository;
-import com.akamai.shop.respository.ProductInventoryRepository;
+import com.akamai.shop.respository.ProductVariationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private ProductInventoryRepository productInventoryRepository;
+    private ProductVariationRepository productVariationRepository;
 
     public String placeOrder(Order order) {
         order.setStatus("PAID");
@@ -25,11 +25,11 @@ public class OrderService {
 
     private String updateInventoryCount(Order order) {
         order.getLineItems().forEach(lineItem -> {
-            ProductInventory inventory = productInventoryRepository.findById(lineItem.getProductVariation().getInventory().getId()).get();
-            Long currentQuantity = inventory.getOnHandCount();
+            ProductVariation productVariation = productVariationRepository.findById(lineItem.getProductVariation().getId()).get();
+            Long currentQuantity = productVariation.getOnHandCount();
             Long newQuantity = currentQuantity - lineItem.getQuantity();
-            inventory.setOnHandCount(newQuantity);
-            productInventoryRepository.save(inventory);
+            productVariation.setOnHandCount(newQuantity);
+            productVariationRepository.save(productVariation);
         });
         return "successful";
     }

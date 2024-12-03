@@ -91,7 +91,7 @@ const ProductDetail
         <td>${productVariation.price}</td>
         <td>
             {
-              productVariation.inventory.onHandCount > 0 &&
+              productVariation.onHandCount > 0 &&
                 <Input type="text"
                 name={productVariation.id}
                 id={productVariation.id}
@@ -99,7 +99,7 @@ const ProductDetail
                 onChange={handleChange} />
             }
             {
-                productVariation.inventory.onHandCount <= 0 &&
+                productVariation.onHandCount <= 0 &&
                 <span>Out of stock</span>
             }
         </td>
